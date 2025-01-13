@@ -2,15 +2,19 @@
 title: Как изменить DNS
 description: 
 published: true
-date: 2025-01-13T01:01:04.818Z
+date: 2025-01-13T01:34:06.109Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-10T05:54:52.522Z
 ---
 
-Переходим по ссылке: http://routerich.lan/cgi-bin/luci/admin/network/network
-Или переходим в "**Сеть → Интерфейсы**"
+## Навигация
+Откройте браузер и введите адрес: http://routerich.lan.
+В разделе меню выберите **"Сеть → Интерфейсы"**.
 
+Для быстрого перехода воспользуйтесь ссылкой: http://routerich.lan/cgi-bin/luci/admin/network/network
+
+## Настройка
 Найдите в списке интерфейс **WAN** и нажмите <kbd>ИЗМЕНИТЬ</kbd>
 
 В появившемся окне перейдите на вкладку <kbd>Расширеные настройки</kbd>
