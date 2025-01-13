@@ -2,7 +2,7 @@
 title: Как изменить DNS
 description: 
 published: true
-date: 2025-01-13T01:00:42.712Z
+date: 2025-01-13T01:01:04.818Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-10T05:54:52.522Z
@@ -23,6 +23,7 @@ dateCreated: 2025-01-10T05:54:52.522Z
 > **На примере Google DNS:**
 > 8.8.8.8
 > 8.8.4.4
+{.is-info}
 
 Нажмите <kbd>СОХРАНИТЬ</kbd>, затем нажмите <kbd>ПРИМЕНИТЬ</kbd> для записи настроек в устройство.
 
