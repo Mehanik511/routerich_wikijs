@@ -2,14 +2,14 @@
 title: Как изменить DNS
 description: 
 published: true
-date: 2025-01-10T14:51:38.152Z
+date: 2025-01-13T01:00:42.712Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-10T05:54:52.522Z
 ---
 
 Переходим по ссылке: http://routerich.lan/cgi-bin/luci/admin/network/network
-Или переходим в "**Система → Интерфейсы**"
+Или переходим в "**Сеть → Интерфейсы**"
 
 Найдите в списке интерфейс **WAN** и нажмите <kbd>ИЗМЕНИТЬ</kbd>
 
