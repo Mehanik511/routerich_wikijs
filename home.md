@@ -2,7 +2,7 @@
 title: Основные Настройки
 description: 
 published: true
-date: 2025-01-27T01:29:38.242Z
+date: 2025-01-27T11:28:55.396Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-11T01:44:04.442Z
@@ -28,7 +28,6 @@ dateCreated: 2025-01-11T01:44:04.442Z
 **💬 Форум:** https://forum.routerich.ru
 **🛒 Предзаказ:** https://t.me/routerich/2821/35857
 **🛒 OZON:** https://www.ozon.ru/seller/routerich-2295604
-**🛒 Wildberries:** https://www.wildberries.ru/brands/311087164-routerich
 
 ## 📦 Доставка и поддержка
 
