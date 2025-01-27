@@ -1,8 +1,8 @@
 ---
-title: Routerich Wiki
+title: Основные Настройки
 description: 
 published: true
-date: 2025-01-27T01:28:26.535Z
+date: 2025-01-27T01:29:38.242Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-11T01:44:04.442Z
