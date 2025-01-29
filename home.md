@@ -1,8 +1,8 @@
 ---
-title: Основные Настройки
+title: Главная
 description: 
 published: true
-date: 2025-01-27T11:28:55.396Z
+date: 2025-01-29T15:22:06.488Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-11T01:44:04.442Z
