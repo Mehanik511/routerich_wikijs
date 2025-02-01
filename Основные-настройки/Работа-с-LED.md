@@ -2,17 +2,17 @@
 title: Работа с LED
 description: 
 published: true
-date: 2025-01-13T07:07:25.849Z
+date: 2025-02-01T09:47:31.654Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-13T07:07:25.849Z
 ---
 
 ## Навигация
-Откройте браузер и введите адрес: http://routerich.lan.
+Откройте браузер и введите адрес: http://routerich.lan
 В разделе меню выберите **Система → Индикаторы**
 
-Для быстрого перехода воспользуйтесь ссылкой: http://routerich.lan/cgi-bin/luci/admin/system/leds.
+Для быстрого перехода воспользуйтесь ссылкой: http://routerich.lan/cgi-bin/luci/admin/system/leds
 
 ## Работа с LED:
 На странице "LED индикации" представлен список всех доступных индикаторов, которые можно настроить. Каждый из них может отображать состояние определённого устройства или интерфейса.
@@ -67,38 +67,91 @@ dateCreated: 2025-01-13T07:07:25.849Z
 > Используем протокол SSH или приложение "LUCI Терминал"
 {.is-warning}
 
-Необходимо ввести последовательно следующие команды:
+Создайте файл скрипта и сделайте его исполняемым:
+`touch /etc/led_off.sh & chmod +x /etc/led_off.sh`
+Откройте файл в текстовом редакторе:
+`nano /etc/led_off.sh`
+И вставьте следующее содержимое:
 ```bash
-uci set system.@led[0].trigger='none'
-uci set system.@led[1].trigger='none'
-uci set system.@led[2].trigger='none'
-uci set system.@led[3].trigger='none'
-uci set system.@led[4].trigger='default-on'
-uci set system.@led[5].trigger='none'
-uci set system.@led[6].trigger='none'
-uci commit
-service led restart
+#!/bin/sh
+
+echo "none" > /sys/class/leds/blue:lan-1/trigger
+echo "none" > /sys/class/leds/blue:lan-2/trigger
+echo "none" > /sys/class/leds/blue:lan-3/trigger
+echo "none" > /sys/class/leds/blue:wan/trigger
+echo "none" > /sys/class/leds/red:wan/trigger
+echo "none" > /sys/class/leds/blue:wlan-24/trigger
+echo "none" > /sys/class/leds/red:wlan-50/trigger
+echo "none" > /sys/class/leds/blue:power/trigger
+echo "default-on" > /sys/class/leds/red:wan/trigger
 ```
 
-После чего, все индикаторы будут отключены.
+Чтобы скрипт выполнялся при включении устройства, добавьте команду в **rc.local**:
+- Перейдите в [**Система -> Автозапуск**](http://routerich.lan/cgi-bin/luci/admin/system/startup)
+- Затем перейдите во вкладку "**Запуск пакетов и служб пользователя при включении устройства**"
+
+Вставьте строку ```/etc/led_off.sh``` для выполнения скрипта перед ```exit 0```:
+```bash
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+/etc/led_off.sh
+
+exit 0
+```
+
+Теперь после перезагрузки все индикаторы будут отключены.
 
 ### Включение всех индикаторов
 > Используем протокол SSH или приложение "LUCI Терминал"
 {.is-warning}
 
-Необходимо ввести последовательно следующие команды:
+Если вы ранее отключили LED-индикаторы и теперь хотите включить их на постоянной основе, удалите соответствующую строку из **rc.local**.
+
+- Перейдите в [**Система -> Автозапуск**](http://routerich.lan/cgi-bin/luci/admin/system/startup)
+- Затем перейдите во вкладку "**Запуск пакетов и служб пользователя при включении устройства**"
+
+Удалите строку содержащую ```/etc/led_off.sh```, что-бы вид был следующий:
 ```bash
-uci set system.@led[0].trigger='netdev'
-uci set system.@led[1].trigger='netdev'
-uci set system.@led[2].trigger='netdev'
-uci set system.@led[3].trigger='netdev'
-uci set system.@led[4].trigger='netdev'
-uci set system.@led[5].trigger='phy0tpt'
-uci set system.@led[6].trigger='phy1tpt'
-uci commit
-service led restart
+# Put your custom commands here that should be executed once
+# the system init finished. By default this file does nothing.
+
+exit 0
 ```
-После чего, все индикаторы будут обратно включены.
+
+Теперь после перезагрузки все индикаторы будут обратно включены.
+
+---
+
+**Для временного включения всех LED-индикаторов до следующей перезагрузки** выполните следующие команды:
+```bash
+echo "netdev" > /sys/class/leds/blue:lan-1/trigger
+echo "1" > /sys/class/leds/blue:lan-1/link
+echo "1" > /sys/class/leds/blue:lan-1/tx
+echo "1" > /sys/class/leds/blue:lan-1/rx
+echo "lan1" > /sys/class/leds/blue:lan-1/device_name
+echo "netdev" > /sys/class/leds/blue:lan-2/trigger
+echo "1" > /sys/class/leds/blue:lan-2/link
+echo "1" > /sys/class/leds/blue:lan-2/tx
+echo "1" > /sys/class/leds/blue:lan-2/rx
+echo "lan2" > /sys/class/leds/blue:lan-2/device_name
+echo "netdev" > /sys/class/leds/blue:lan-3/trigger
+echo "1" > /sys/class/leds/blue:lan-3/link
+echo "1" > /sys/class/leds/blue:lan-3/tx
+echo "1" > /sys/class/leds/blue:lan-3/rx
+echo "lan3" > /sys/class/leds/blue:lan-3/device_name
+echo "netdev" > /sys/class/leds/blue:wan/trigger
+echo "1" > /sys/class/leds/blue:wan/link
+echo "1" > /sys/class/leds/blue:wan/tx
+echo "1" > /sys/class/leds/blue:wan/rx
+echo "wan"  > /sys/class/leds/blue:wan/device_name
+echo "netdev" > /sys/class/leds/red:wan/trigger
+echo "1" > /sys/class/leds/red:wan/link
+echo "wan"  > /sys/class/leds/red:wan/device_name
+echo "phy0tpt" > /sys/class/leds/blue:wlan-24/trigger
+echo "phy1tpt" > /sys/class/leds/red:wlan-50/trigger
+echo "default-on" > /sys/class/leds/blue:power/trigger
+```
 
 ### Отключение по расписанию
 Данный скрипт произведёт выключение индикации в 23:30, а включение в 7:00.
@@ -106,56 +159,73 @@ service led restart
 > Используем протокол SSH или приложение "LUCI Терминал"
 {.is-warning}
 
-Cоздаем файл по пути **/etc/ledcontrol.sh** комадной:
-`touch /etc/ledcontrol.sh`
-Открываем файл текстовым редактором:
+Создайте файл скрипта и сделайте его исполняемым:
+`touch /etc/ledcontrol.sh & chmod +x /etc/ledcontrol.sh`
+Откройте файл в текстовом редакторе:
 `nano /etc/ledcontrol.sh`
-И вставляем содержимое таблицы ниже:
+
+И вставьте следующее содержимое:
 ```bash
 #!/bin/sh
 
 case "$1" in
         on)
-            uci set system.@led[0].trigger='netdev'
-            uci set system.@led[1].trigger='netdev'
-            uci set system.@led[2].trigger='netdev'
-            uci set system.@led[3].trigger='netdev'
-            uci set system.@led[4].trigger='netdev'
-            uci set system.@led[5].trigger='phy0tpt'
-            uci set system.@led[6].trigger='phy1tpt'
-            uci commit
-            service led restart
+            echo "netdev" > /sys/class/leds/blue:lan-1/trigger
+            echo "1" > /sys/class/leds/blue:lan-1/link
+            echo "1" > /sys/class/leds/blue:lan-1/tx
+            echo "1" > /sys/class/leds/blue:lan-1/rx
+            echo "lan1" > /sys/class/leds/blue:lan-1/device_name
+            echo "netdev" > /sys/class/leds/blue:lan-2/trigger
+            echo "1" > /sys/class/leds/blue:lan-2/link
+            echo "1" > /sys/class/leds/blue:lan-2/tx
+            echo "1" > /sys/class/leds/blue:lan-2/rx
+            echo "lan2" > /sys/class/leds/blue:lan-2/device_name
+            echo "netdev" > /sys/class/leds/blue:lan-3/trigger
+            echo "1" > /sys/class/leds/blue:lan-3/link
+            echo "1" > /sys/class/leds/blue:lan-3/tx
+            echo "1" > /sys/class/leds/blue:lan-3/rx
+            echo "lan3" > /sys/class/leds/blue:lan-3/device_name
+            echo "netdev" > /sys/class/leds/blue:wan/trigger
+            echo "1" > /sys/class/leds/blue:wan/link
+            echo "1" > /sys/class/leds/blue:wan/tx
+            echo "1" > /sys/class/leds/blue:wan/rx
+            echo "wan"  > /sys/class/leds/blue:wan/device_name
+            echo "netdev" > /sys/class/leds/red:wan/trigger
+            echo "1" > /sys/class/leds/red:wan/link
+            echo "wan"  > /sys/class/leds/red:wan/device_name
+            echo "phy0tpt" > /sys/class/leds/blue:wlan-24/trigger
+            echo "phy1tpt" > /sys/class/leds/red:wlan-50/trigger
+            echo "default-on" > /sys/class/leds/blue:power/trigger
             ;;
 
         off)
-            uci set system.@led[0].trigger='none'
-            uci set system.@led[1].trigger='none'
-            uci set system.@led[2].trigger='none'
-            uci set system.@led[3].trigger='none'
-            uci set system.@led[4].trigger='default-on'
-            uci set system.@led[5].trigger='none'
-            uci set system.@led[6].trigger='none'
-            uci commit
-            service led restart
+            echo "none" > /sys/class/leds/blue:lan-1/trigger
+            echo "none" > /sys/class/leds/blue:lan-2/trigger
+            echo "none" > /sys/class/leds/blue:lan-3/trigger
+            echo "none" > /sys/class/leds/blue:wan/trigger
+            echo "none" > /sys/class/leds/red:wan/trigger
+            echo "none" > /sys/class/leds/blue:wlan-24/trigger
+            echo "none" > /sys/class/leds/red:wlan-50/trigger
+            echo "none" > /sys/class/leds/blue:power/trigger
+            echo "default-on" > /sys/class/leds/red:wan/trigger
             ;;
 
         *)
             echo "Usage: $0 {on|off}"
 
             exit 1
-            
+
 esac
 ```
 
 Для сохранения файла, используйте комбинацию <kbd>CTRL+S</kbd>, для закрытия текстового редактора используйте <kbd>CTRL+X</kbd>.
 
-Затем в **планировщик заданий** расположенный в [**Система → Планировщик**](http://routerich.lan/cgi-bin/luci/admin/system/crontab),
-До строки `exit 0`, нужно добавить следующие содержимое:
+Затем в **планировщик заданий** расположенный в [**Система → Планировщик**](http://routerich.lan/cgi-bin/luci/admin/system/crontab), вставьте следующее содержимое:
 ```
 30 23 * * * /etc/ledcontrol.sh off
 00 7 * * * /etc/ledcontrol.sh on
-
-exit 0
 ```
 
-> За адаптацию скрипта, спасибо [**NyXzOr**](https://4pda.to/forum/index.php?showuser=3288424)
+И нажмите <kbd>СОХРАНИТЬ</kbd>
+
+> За пример скрипта, спасибо [**NyXzOr**](https://4pda.to/forum/index.php?showuser=3288424)
