@@ -2,7 +2,7 @@
 title: Главная
 description: 
 published: true
-date: 2025-01-29T15:22:06.488Z
+date: 2025-02-03T11:53:07.870Z
 tags: 
 editor: markdown
 dateCreated: 2025-01-11T01:44:04.442Z
@@ -10,7 +10,7 @@ dateCreated: 2025-01-11T01:44:04.442Z
 
 # Routerich
 <div style="display: inline-block; padding-top: 20px;">
-<img src="/logo_transparent.png" alt="Routerich Logo" width="100" style="float: left; margin-right: 10px;"/>
+<img src="/_assets/favicons/logo_transparent.png" alt="Routerich Logo" width="100" style="float: left; margin-right: 10px;"/>
 Это надёжные и доступные маршрутизаторы, которые обеспечивают стабильную и высокоскоростную сеть для дома и офиса. Идеальный выбор для тех, кто ценит функциональность и гибкость настроек!
 </div>
 
