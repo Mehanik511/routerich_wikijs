@@ -1,8 +1,8 @@
 ---
 title: Восстановление через U-Boot
 description: 
-published: false
-date: 2025-05-12T21:13:16.405Z
+published: true
+date: 2025-05-12T21:19:43.288Z
 tags: 
 editor: markdown
 dateCreated: 2025-05-12T21:13:16.405Z
