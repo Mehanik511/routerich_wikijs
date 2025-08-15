@@ -2,7 +2,7 @@
 title: Удалённый доступ к роутерам RouteRich
 description: 
 published: true
-date: 2025-08-15T13:50:25.017Z
+date: 2025-08-15T14:02:19.923Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-15T13:50:25.017Z
@@ -183,8 +183,29 @@ a1b2c3d4e5f6789012345678901234567890123456789012345678901234abcd
 
 ### 📸 Пошаговые скриншоты
 
-> 📌 **Примечание**: Скриншоты настройки Android-клиента доступны в папке:
-> `/home/openwisp/ionscale/png/client andorid/`
+<details>
+<summary><b>📱 Нажмите, чтобы посмотреть скриншоты настройки Android-клиента</b></summary>
+
+#### Шаг 1: Главный экран приложения
+<img src="/remoteimg/photo_1_2025-08-15_16-33-46.jpg" width="300" alt="Главный экран Tailscale">
+
+#### Шаг 2: Настройка сервера координации
+<img src="/remoteimg/photo_2_2025-08-15_16-33-46.jpg" width="300" alt="Настройка сервера координации">
+
+#### Шаг 3: Ввод адреса сервера
+<img src="/remoteimg/photo_3_2025-08-15_16-33-46.jpg" width="300" alt="Ввод адреса сервера rc.routerich.ru">
+
+#### Шаг 4: Авторизация с ключом
+<img src="/remoteimg/photo_4_2025-08-15_16-33-46.jpg" width="300" alt="Ввод Device Auth Key">
+
+#### Шаг 5: Процесс подключения
+<img src="/remoteimg/photo_5_2025-08-15_16-33-46.jpg" width="300" alt="Процесс подключения к сети">
+
+#### Шаг 6: Успешное подключение
+<img src="/remoteimg/photo_6_2025-08-15_16-33-46.jpg" width="300" alt="Статус Connected - успешное подключение">
+
+</details>
+
 
 ---
 
