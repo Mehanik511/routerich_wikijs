@@ -2,7 +2,7 @@
 title: Удалённый доступ к роутерам RouteRich
 description: 
 published: true
-date: 2025-08-15T14:13:39.943Z
+date: 2025-08-29T19:24:12.416Z
 tags: 
 editor: markdown
 dateCreated: 2025-08-15T13:50:25.017Z
@@ -319,7 +319,7 @@ sudo tailscale up --login-server https://rc.routerich.ru/
 
 1. Перейдите в **VPN** → **Tailscale** → **Настройки**
 2. Включите опцию **"Accept Routes"** (Принимать маршруты)
-3. В поле **"Interface"** укажите интерфейс Tailscale (обычно `tailscale0`)
+3. Надо перейти в службы-подкоп и там искать Source Network Interface поле **"Interface"** укажите интерфейс Tailscale (обычно `tailscale0`)
 4. Нажмите **"Сохранить и применить"**
 
 > ⚠️ **Важно**: После настройки может потребоваться перезагрузка роутера для применения изменений
